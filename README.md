@@ -1,16 +1,67 @@
-# React + Vite
+# React Router: Home / About / Contact
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Короткий опис проекту
 
-## React Compiler
+Три сторінки з навігацією без перезавантаження браузера:
+- **`/`** — Home ("Це домашня сторінка")
+- **`/about`** — About ("Це сторінка про нас")
+- **`/contact`** — Contact ("Це контактна сторінка")
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Активне посилання в меню виділяється стилем (клас `active` через `NavLink`).
 
-## Expanding the Oxlint configuration
+**Додатково (`App.dynamic.jsx`):** альтернативна реалізація через сучасний об'єктний
+підхід — `createBrowserRouter` + `RouterProvider`, з динамічним створенням маршрутів
+та посилань на основі масиву об'єктів `routes`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Структура проєкту
+
+```
+my-react-router-app/
+├── src/
+│   ├── components/
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   └── Contact.jsx
+│   ├── App.jsx           # BrowserRouter + Routes + Route
+│   ├── App.css
+│   └── main.jsx
+├── index.html
+├── package.json
+└── package-lock.json
+```
+
+## Встановлення та запуск
+
+```bash
+npm install
+npm install react-router
+npm run dev
+```
+
+Відкрити посилання з терміналу, зазвичай `http://localhost:5173/`.
+
+## Демо-версія
+
+[Посилання на розгорнутий проєкт](https://your-project.vercel.app) — *замінити на свою реальну адресу з Vercel*
+
+## Перевірка результату
+
+1. Натискати посилання в меню ("Головна" / "Про нас" / "Контакти") — сторінка змінюється
+   **без перезавантаження браузера**, URL у адресному рядку змінюється.
+2. Активне посилання виділяється кольором/рамкою.
+
+## ⚠️ Деплой на Vercel: налаштування для React Router
+
+Оскільки маршрутизація відбувається на клієнті, при прямому переході за адресою
+(наприклад, `https://ваш-сайт.vercel.app/about`) сервер Vercel за замовчуванням поверне 404,
+бо фізичного файлу `/about` не існує. Потрібно додати `vercel.json` у корінь проєкту:
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+Це перенаправляє всі шляхи на `index.html`, а маршрутизацію вже бере на себе React Router.
