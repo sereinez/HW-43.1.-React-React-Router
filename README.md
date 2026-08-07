@@ -44,7 +44,7 @@ npm run dev
 
 ## Демо-версія
 
-[Посилання на розгорнутий проєкт](https://your-project.vercel.app) — *замінити на свою реальну адресу з Vercel*
+[Посилання на розгорнутий проєкт](https://hw-43-1-react-react-router.vercel.app/contact) — *замінити на свою реальну адресу з Vercel*
 
 ## Перевірка результату
 
